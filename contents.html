@@ -1,0 +1,10 @@
+---
+layout: page
+title: Index
+---
+
+{% for post in site.posts %}
+<div class="list-item">
+	<span class="post-date-list">{{ post.date | date_to_string }} &middot; </span> <a href="{{ post.url }}" class="post-title-list">{{ post.title }}</a>
+</div>
+{% endfor %}
