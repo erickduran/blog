@@ -3,17 +3,17 @@ permalink:           pretty
 
 # Setup
 title:               Erick Durán
-tagline:             ''
+tagline:             'A personal blog'
 description:         'A personal blog dedicated to my free time.'
-url:                 https://erickduran.github.io
 baseurl:             ''
 paginate:            5
+plugins:             [jekyll-paginate]
 
 # About/contact
 author:
   name:              Erick Durán
-  url:               https://twitter.com/mdo
-  email:             markdotto@gmail.com
+  url:               https://erickduran.com
+  email:             me@erickduran.com
 
 # Custom vars
 version:             1.0.0
