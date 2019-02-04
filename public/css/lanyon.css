@@ -392,7 +392,7 @@ a.sidebar-nav-item:focus {
   color: #303030;
 }
 
-.post-title-list{
+.post-title-list {
   font-family: "Playfair Display", Georgia, "Times New Roman", serif;
 }
 
@@ -673,4 +673,14 @@ a.pagination-item:hover {
 /* Only one tweak for a reverse layout */
 .layout-reverse.sidebar-overlay #sidebar-checkbox:checked ~ .sidebar {
   box-shadow: -.25rem 0 .5rem rgba(0,0,0,.1);
+}
+
+.comments-title {
+  font-size: .8em;
+  color: #9a9a9a;
+}
+
+.comments-title:hover {
+  color: #4A61E3;
+  text-decoration: none;
 }
