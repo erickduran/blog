@@ -1,0 +1,31 @@
+---
+layout: page
+title: Categories
+---
+
+<div class="tags-expo">
+  <div class="tags-expo-list">
+    {% assign flag = 1%}
+    {% for tag in site.categories %}
+    {% if flag == 1 %}
+    <a href="#{{ tag[0] | slugify }}" class="post-tag post-title-list">{{ tag[0] }}</a>
+    {% else %}
+     | <a href="#{{ tag[0] | slugify }}" class="post-tag post-title-list">{{ tag[0] }}</a>
+    {% endif %}
+    {% assign flag = 0%}
+    {% endfor %}
+  </div>
+  <hr/>
+  <div class="tags-expo-section">
+    {% for tag in site.categories %}
+    <h2 id="{{ tag[0] | slugify }}">{{ tag[0] }}</h2>
+    <ul class="tags-expo-posts">
+      {% for post in tag[1] %}
+      <a class="post-title post-title-list" href="{{ site.baseurl }}{{ post.url }}">
+        {{ post.title }}</a>
+        <small class="post-date">{{ post.date | date_to_string }}</small>
+      {% endfor %}
+    </ul>
+    {% endfor %}
+  </div>
+</div>

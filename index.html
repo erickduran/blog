@@ -12,7 +12,7 @@ title: Home
       </a>
     </h1>
 
-    <span class="post-date">{{ post.date | date_to_string }} &middot; {% include read_time.html %}</span>
+    <span class="post-date">{{ post.date | date_to_string }} &middot; {{ post.category }} &middot; {% include read_time.html %}</span>
 
     {{ post.content }}
   </div>

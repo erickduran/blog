@@ -9,6 +9,20 @@ baseurl:             ''
 paginate:            5
 plugins:             [jekyll-paginate]
 
+nav:
+  Home:           
+    - '/'
+  Index:           
+    - '/contents/'
+    - { Categories: '/categories/' }
+    - { Tags: '/tags/' }
+  About:          
+    - '/about/'
+
+# Where are tags and categories displayed
+tag_page: '/tags/'
+category_page: '/categories/'
+
 # About/contact
 author:
   name:              Erick Durán

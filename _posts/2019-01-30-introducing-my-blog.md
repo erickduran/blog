@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Introducing my blog
+tags: [Introduction, Blog]
+category: General
 ---
 
 This blog will be used for personal interests, knowledge sharing and fun.
