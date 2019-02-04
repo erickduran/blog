@@ -690,6 +690,16 @@ a.pagination-item:hover {
   color: #9a9a9a;
 }
 
+.read-more {
+  font-size: .8em;
+  color: #9a9a9a;
+}
+
+.read-more:hover {
+  color: #4A61E3;
+  text-decoration: none;
+}
+
 sup a {
   color: #4C7E75;
 }
