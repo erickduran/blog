@@ -11,13 +11,9 @@ title: Home
         {{ post.title }}
       </a>
     </h1>
-
+    {% assign words = post.content | number_of_words %}    
     <span class="post-date">{{ post.date | date_to_string }} &middot; {{ post.category }} &middot; {% include read_time.html %}</span>
-
-    <article>
-      {{ post.excerpt | markdownify }}
-    <article>
-
+      {{ post.excerpt }}
     <div class="post-more">
       <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read more</a>
     </div>
