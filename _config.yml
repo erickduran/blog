@@ -8,6 +8,7 @@ description:         'A personal blog dedicated to my free time.'
 baseurl:             ''
 paginate:            5
 plugins:             [jekyll-paginate]
+logo:                '/public/logo.png'
 
 nav:
   Home:           
