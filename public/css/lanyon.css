@@ -42,13 +42,22 @@ a {
   transition: all 0.2s ease-in-out;
 }
 
+.post a {
+  color: #4C7E75;
+}
+
+.post a:hover {
+  color: #4A61E3;
+  text-decoration: none;
+}
+
 .transition {
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
 
-.tag {
+a.tag {
   border: .06rem solid black;
   border-radius: .3rem;
   padding: .2rem;
@@ -61,7 +70,7 @@ a {
   color: black;
 }
 
-.tag:hover {
+a.tag:hover {
   background: black;
   color: white;
   text-decoration: none; 
@@ -716,3 +725,4 @@ sup a {
 sup a:hover {
   color: #4A61E3;
 }
+

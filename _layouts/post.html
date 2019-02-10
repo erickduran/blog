@@ -8,7 +8,7 @@ layout: default
   {{ content }}
   {% if page.tags %}
     {% for tag in page.tags %}
-      <a class="tag" href="{{ site.baseurl }}{{ site.tag_page }}#{{ tag | slugify }}" class="post-tag">{{ tag }}</a>
+      <a class="tag" href="{{ site.baseurl }}{{ site.tag_page }}#{{ tag | slugify }}">{{ tag }}</a>
     {% endfor %}
   {% endif %}
 </div>
