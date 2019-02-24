@@ -76,7 +76,7 @@ Enter your password, and add the following lines at the end of the file, before 
 
 ```bash
 printf "Starting Dynamic DNS Script"
-sudo python /home/pi/ddns.py &
+python /home/pi/ddns.py &
 ```
 
 This will print the message "Starting Dynamic DNS Script" on your startup console screen and run the script afterwards. The `&` character at the end of the line will indicate to start the process on background. My script is located and it will run from `/home/pi/`, so just remember that the log file will be created there.
