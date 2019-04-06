@@ -32,3 +32,8 @@ author:
 
 # Custom vars
 version:             1.0.0
+
+# Plugins
+plugins:
+  - jekyll-seo-tag
+  - jekyll-paginate
