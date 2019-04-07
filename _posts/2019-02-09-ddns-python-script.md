@@ -12,7 +12,7 @@ I know that this may not be the most efficient or reliable solution for this, bu
 
 
 ## Prerequisites
-- Python (tested on 2.7)
+- Python (tested on 3.5)
 - A Google Domains domain
 
 ## Setting up Google Domains
@@ -21,29 +21,35 @@ The first step to take is setting up the Dynamic DNS synthetic record that will 
 ## Setting up the script
 The next step to take is configuring the script. You can clone the latest version [here](https://github.com/erickduran/dynamic-dns-updater) on Github, or copy it from above:
 ```python
-#!/usr/bin/python
+#!/usr/bin/python3
 import requests
 import logging
 import time
-from urllib2 import urlopen
+from urllib.request import urlopen
 
 logging.basicConfig(filename='ddns.log', level=logging.DEBUG, filemode='a', format='%(asctime)s - %(message)s')
 
 username = 'username'
 password = 'password'
-hostname = 'your-domain.com'
+hostname = 'example.com'
 old_ip = ''
 
 while True:
-	my_ip = urlopen('https://domains.google.com/checkip').read() 
-	if my_ip != old_ip:
-		url = 'https://' + username + ':' + password + '@domains.google.com/nic/update?hostname=' + hostname
+	try:
+		my_ip = urlopen('https://domains.google.com/checkip').read() 
+	except:
+		logging.debug('CATCHED AN ERROR... RETRYING IN 10 SECONDS')
+		time.sleep(10)
+	else:
+		if my_ip != old_ip:
+			url = 'https://{}:{}@domains.google.com/nic/update?hostname={}'.format(username, password, hostname)
 			response = requests.post(url)
 			output = response.content.decode('utf-8')
-			if 'good' in output:
+			if 'good' in output or 'nochg' in output:
 				old_ip = my_ip
+			logging.debug('-- OUTPUT FOR UPDATE: '+ hostname +' --')
 			logging.debug('Response from DDNS update: '+ output)
-	time.sleep(10)
+		time.sleep(10)
 ```
 You should configure the following variables (all obtained from your Google Domains DNS page):
 - `username` 
@@ -60,7 +66,7 @@ The script includes a few logging lines to keep track of all the requests-respon
 
 To test the script, just `cd` to the directory where you stored the script and run the following command:
 ```bash
-python ddns.py
+python3 ddns.py
 ```
 Wait for the time you specified and check in your Google Domains page that the IP has changed to your current server's public IP address. 
 
@@ -76,7 +82,7 @@ Enter your password, and add the following lines at the end of the file, before 
 
 ```bash
 printf "Starting Dynamic DNS Script"
-python /home/pi/ddns.py &
+python3 /home/pi/ddns.py &
 ```
 
 This will print the message "Starting Dynamic DNS Script" on your startup console screen and run the script afterwards. The `&` character at the end of the line will indicate to start the process on background. My script is located and it will run from `/home/pi/`, so just remember that the log file will be created there.
@@ -87,3 +93,8 @@ Your current domain should now be pointing to your server's public IP address, s
 
 I hope this can help you setup your server in a faster and easier way as it did to me. If you have any comments or suggestions please comment them below.
 
+### Updated on _April 7th, 2019_
+
+- Changed to Python 3.5
+- Catched error caused by some `urllib` versions
+- Now stable and working for weeks, several IP changes
