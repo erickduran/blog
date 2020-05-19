@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 'Distroless: a quick guide to secure Docker'
-tags: [Docker, Security, DevSecOps]
+tags: [Docker, Security, DevSecOps, Distroless, DevOps]
 category: Programming
 comments: true
 ---
@@ -25,10 +25,7 @@ CMD ["python", "my-app.py"]
 
 And that's great. You might get really happy when your code compiles and runs with all its dependencies after less than 10 attempts, but it isn't that exciting when your corporate network gets breached because a recent RCE (Remote Code Execution) vulnerability was disclosed for `python:3.7-stretch` or your `nice-dependency-1`.
 
-[According to Snyk](https://snyk.io/blog/the-top-two-most-popular-docker-base-images-each-have-over-500-vulnerabilities/), on 2019, the official Node.js image included more than 500 vulnerable system libraries and, on top of that, half of developers don't even perform any kind of security scan on the OS layer of their images. 
-
-
-
+[According to Snyk](https://snyk.io/blog/the-top-two-most-popular-docker-base-images-each-have-over-500-vulnerabilities/), on 2019, the official Node.js image included more than 500 vulnerable system libraries and, on top of that, half of developers don't even perform any kind of security scan on the OS layer of their images. There is almost no testing or scanning done on the underlying layers of production applications running in Docker.
 
 But, **is it worth securing isolated environments?** In 2019, a serious [vulnerability](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-5736) was disclosed in runC (a container runtime) that allowed an attacker to overwrite the tool's binary and potentially gain access to the host, provided that the user had write access to a container. Even [AWS services were affected](https://aws.amazon.com/security/security-bulletins/AWS-2019-002/). This is just one of many severe issues that have been reported in relation with Docker.
 
