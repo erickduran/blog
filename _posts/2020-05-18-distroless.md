@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Distroless: a quick guide to secure Docker'
+title: 'Distroless: a first step into securing Docker'
 tags: [Docker, Security, DevSecOps, Distroless, DevOps]
 category: Programming
 comments: true
