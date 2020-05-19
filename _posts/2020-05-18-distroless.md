@@ -41,9 +41,9 @@ By having a distroless base image, you force yourself into precisely knowing wha
 Additionally, this may also come with the great side effect of reducing your overall image size. Depending on the image you choose to use and your application's dependencies, you may save a lot of space. Less system libraries and simpler OS also means less storage.
 
 ## Is it safer?
-I recently worked on [this small Proof of Concept](https://github.com/erickduran/docker-distroless-poc) to experiment with distroless and understand its advantages against RCE. The experiment consists of a vulnerable web application that can was built on a distroless image and a regular image for comparison. The web application allowed the user to ping any host without sanitizing the input, allowing the user to inject any extra commands to the text field. This could easily be leveraged by an attacker to use some tool like `curl` or `wget` to download an exploit and potentially obtain a reverse shell. 
+I recently worked on [this small Proof of Concept](https://github.com/erickduran/docker-distroless-poc) to experiment with distroless and understand its advantages against RCE. The experiment consists of a vulnerable web application that was built on a distroless image and a regular image for comparison. The web application allowed the user to ping any host without sanitizing the input, allowing the user to inject any extra commands to the text field. This could easily be leveraged by an attacker to use some tool like `curl` or `wget` to download an exploit and potentially obtain a reverse shell. 
 
-At the end, I was not able to do much by attempting to execute commands in the vulnerable distroless application and it certainly provided less feedback than the "regular" version, making the exploration stage of an attack harder. There was some RCE happening, but as all commands returned "not found" there was virtually nothing you could do or any information to obtain. If by some reason an attacker manages to get a shell, there's not much they can do as it is virtually impossible to do anything interesting with the included set of shell commands or install any additional tools.
+At the end, I was not able to do much by attempting to execute commands in the vulnerable distroless application and it certainly provided less feedback than the "regular" version, making the exploration stage of an attack harder. There was some RCE happening, but as all commands returned "not found" there was virtually nothing you could do or any information to obtain. If by some reason an attacker manages to get a shell, there's not much they can do as it is nearly impossible to do anything interesting with the included set of OS commands or downloading any additional tools.
 
 The images compared in size by almost the double. The original application based on the `python:3.7-slim-stretch` image was 185MB and the distroless version was 71MB. 
 
@@ -53,7 +53,7 @@ You can start by asking yourself these questions:
 - Do you scan your Docker images for vulnerable dependencies?
 - Do you pentest your final Docker containers in runtime?
 
-From experimenting with distroless, I encountered that it is way easier to start setting up your environment the right way from the beginning. Google uses [Bazel](https://bazel.build/) to build the images and properly test them before pushing them to their registries. You can adopt these practices to at least address the first two questions from above.
+From experimenting with distroless, I encountered that it is way easier to start setting up your environment the right way from the beginning. Google uses [Bazel](https://bazel.build/) to build the images and properly test them before pushing them to their registries. You can adopt these practices to at least address the first two questions from above. The third can be achieved on the test stage by getting a [DAST](https://en.wikipedia.org/wiki/Dynamic_application_security_testing) tool.
 
 ## Final comments
 If you want to create and deliver secure containerized production applications, you should take give a chance to distroless images. Some of the advantages include, but are not limited to:
@@ -63,7 +63,7 @@ If you want to create and deliver secure containerized production applications, 
 - Mitigating the risk of exposing a shell
 - Avoiding package managers and associated risks
 
-Migrating your whole workflow to this paradigm may take some time (specially for big, legacy projects with lots of dependencies), but it is definetly worth a try if you want to reduce the risks included with Docker.
+Migrating your whole workflow to this paradigm may take some time (specially for big, legacy projects with lots of dependencies), but it is definetly worth a try if you haven't taken a first step to reduce the risks included with Docker.
 
 ## Other resources
 
