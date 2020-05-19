@@ -31,7 +31,7 @@ author:
   email:             me@erickduran.com
 
 # Custom vars
-version:             1.0.0
+blog_url:            https://blog.erickduran.com
 
 # Plugins
 plugins:
