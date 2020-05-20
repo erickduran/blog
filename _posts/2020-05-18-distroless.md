@@ -27,6 +27,9 @@ And that's great. You might get really happy when your code compiles and runs wi
 
 [According to Snyk](https://snyk.io/blog/the-top-two-most-popular-docker-base-images-each-have-over-500-vulnerabilities/), on 2019, the official Node.js image included more than 500 vulnerable system libraries and, on top of that, half of developers don't even perform any kind of security scan on the OS layer of their images. There is almost no testing or scanning done on the underlying layers of production applications running in Docker.
 
+![Snyk report](https://blog.erickduran.com/public/img/2020-05-18-snik-devs.png)
+<sup>*From [Snyk](https://snyk.io/blog/80-of-developers-are-not-addressing-docker-security/)*</sup>
+
 But, **is it worth securing isolated environments?** In 2019, a serious [vulnerability](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-5736) was disclosed in runC (a container runtime) that allowed an attacker to overwrite the tool's binary and potentially gain access to the host, provided that the user had write access to a container. Even [AWS services were affected](https://aws.amazon.com/security/security-bulletins/AWS-2019-002/). This is just one of many severe issues that have been reported in relation with Docker.
 
 ## So, what is distroless?
@@ -36,12 +39,16 @@ Distroless images are **exactly** what your application needs to run. Just your 
 
 Distroless is project introduced [by Google](https://github.com/GoogleContainerTools/distroless) to develop smaller and more secure Docker images having the premise that most of what common images include is not really necessary.
 
+![No ls](https://blog.erickduran.com/public/img/2020-05-18-distroless-ls.png)
+
 By having a distroless base image, you force yourself into precisely knowing what files or dependencies your application needs to execute. You also enforce a build step that can be extracted from the runtime so you just have to copy the final executable file(s) to your runtime environment. There is no package managers, so the risk of letting an attacker install something after they have gained access to your container is removed, at least by installing it that way.
 
 Additionally, this may also come with the great side effect of reducing your overall image size. Depending on the image you choose to use and your application's dependencies, you may save a lot of space. Less system libraries and simpler OS also means less storage.
 
 ## Is it safer?
 I recently worked on [this small Proof of Concept](https://github.com/erickduran/docker-distroless-poc) to experiment with distroless and understand its advantages against RCE. The experiment consists of a vulnerable web application that was built on a distroless image and a regular image for comparison. The web application allowed the user to ping any host without sanitizing the input, allowing the user to inject any extra commands to the text field. This could easily be leveraged by an attacker to use some tool like `curl` or `wget` to download an exploit and potentially obtain a reverse shell. 
+
+![Safe ping](https://blog.erickduran.com/public/img/2020-05-18-distroish-ping.png)
 
 At the end, I was not able to do much by attempting to execute commands in the vulnerable distroless application and it certainly provided less feedback than the "regular" version, making the exploration stage of an attack harder. There was some RCE happening, but as all commands returned "not found" there was virtually nothing you could do or any information to obtain. If by some reason an attacker manages to get a shell, there's not much they can do as it is nearly impossible to do anything interesting with the included set of OS commands or downloading any additional tools.
 

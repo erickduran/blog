@@ -30,6 +30,8 @@ author:
   url:               https://erickduran.com
   email:             me@erickduran.com
 
+version: 1.0.1
+
 # Custom vars
 blog_url:            https://blog.erickduran.com
 
