@@ -27,7 +27,7 @@ And that's great. You might get really happy when your code compiles and runs wi
 
 [According to Snyk](https://snyk.io/blog/the-top-two-most-popular-docker-base-images-each-have-over-500-vulnerabilities/), on 2019, the official Node.js image included more than 500 vulnerable system libraries and, on top of that, half of developers don't even perform any kind of security scan on the OS layer of their images. There is almost no testing or scanning done on the underlying layers of production applications running in Docker.
 
-![Snyk report](https://blog.erickduran.com/public/img/2020-05-18-snik-devs.png)
+![Snyk report](https://blog.erickduran.com/public/img/2020-05-18-snyk-devs.png)
 <sup>*From [Snyk](https://snyk.io/blog/80-of-developers-are-not-addressing-docker-security/)*</sup>
 
 But, **is it worth securing isolated environments?** In 2019, a serious [vulnerability](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-5736) was disclosed in runC (a container runtime) that allowed an attacker to overwrite the tool's binary and potentially gain access to the host, provided that the user had write access to a container. Even [AWS services were affected](https://aws.amazon.com/security/security-bulletins/AWS-2019-002/). This is just one of many severe issues that have been reported in relation with Docker.
