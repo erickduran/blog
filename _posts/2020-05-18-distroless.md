@@ -78,3 +78,4 @@ Migrating your whole workflow to this paradigm may take some time (specially for
 - [Google's distroless talk](https://www.youtube.com/watch?v=lviLZFciDv4).
 - Another [post](https://www.abhaybhargav.com/stories-of-my-experiments-with-distroless-containers/) with distroless experiments.
 
+Give me a clap on my [Medium post](https://medium.com/@erick_duran/distroless-a-first-step-into-securing-docker-95178cefda17).
