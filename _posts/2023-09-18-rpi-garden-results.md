@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Keeping my plants alive from overseas'
+title: 'Keeping my plants alive while overseas'
 tags: [Python, Raspberry Pi, Gardening, Home Lab]
 category: Programming
 comments: true
